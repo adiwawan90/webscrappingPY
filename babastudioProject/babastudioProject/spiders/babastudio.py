@@ -4,8 +4,7 @@ import scrapy
 
 class BabastudioSpider(scrapy.Spider):
     name = 'babastudio'
-    # allowed_domains = ['academy.babastudio.com']
-    start_urls = ['http://academy.babastudio.com/course-package-frontend']
+    start_urls = ['https://academy.babastudio.com/course-package-frontend']
 
     def parse(self, response):
         all_kursus = response.css('div.course__box')
@@ -14,7 +13,7 @@ class BabastudioSpider(scrapy.Spider):
             price = kursus.css('strong::text').extract()
             image = kursus.css('img.img-responsive').attrib['src']
             yield{
-                'title' : title,
-                'price' : price,
-                'image' : image
+                'title': title,
+                'price': price,
+                'image': image
             }
